@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="struts_data.xml"></include>
+	<include file="struts_orgenization.xml"></include>
+	<include file="struts_position.xml"></include>
+	<include file="struts_propertiesitems.xml"></include>
+	<include file="struts_user.xml"></include>
+	<include file="struts_role.xml"></include>
+	<include file="struts_emp.xml"></include>
+	<include file="struts_sysright.xml"></include>
+	<include file="struts_rolesysright.xml"></include>
+	<include file="struts_train.xml"></include>
+</struts>    

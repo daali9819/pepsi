@@ -1,0 +1,98 @@
+package org.hr_xiangmu.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * Sysright entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "sysright", catalog = "hr_project")
+public class Sysright implements java.io.Serializable {
+
+	// Fields
+
+	private Integer sysrightId;
+	private Sysright parent;
+	private String text;
+	private String url;
+	private String iconCls;
+	private Set<Sysright> children = new HashSet<Sysright>(0);
+
+	// Constructors
+
+	
+
+	// Property accessors
+	@Id
+	@GeneratedValue
+	@Column(name = "sysright_id", unique = true)
+	public Integer getSysrightId() {
+		return this.sysrightId;
+	}
+
+	public void setSysrightId(Integer sysrightId) {
+		this.sysrightId = sysrightId;
+	}
+
+	@ManyToOne()
+	@JoinColumn(name = "parent_id")
+	public Sysright getParent() {
+		return this.parent;
+	}
+
+	public void setParent(Sysright parent) {
+		this.parent = parent;
+	}
+
+	@Column(name = "text", length = 50)
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Column(name = "url", nullable = false, length = 50)
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	@Column(name = "iconCls", nullable = false, length = 50)
+	public String getIconCls() {
+		return this.iconCls;
+	}
+
+	public void setIconCls(String iconCls) {
+		this.iconCls = iconCls;
+	}
+
+	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+	public Set<Sysright> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<Sysright> children) {
+		this.children = children;
+	}
+
+	
+
+}

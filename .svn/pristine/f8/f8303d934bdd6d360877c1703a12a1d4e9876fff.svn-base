@@ -1,0 +1,213 @@
+﻿/**
+ * Payment管理的js脚本
+ */
+$(function(){
+	$("#paymentList").datagrid({
+		title : "Payment列表",
+		iconCls : "icon-search",
+		url : "sys/payment_list.action",
+		fitColumns:true, //列填充满表格
+		pagination : true,
+		pageList : [5,10,15,20],
+		pageSize : 5,
+		rownumbers : true, //是否显示行号
+		striped : true,
+		showHeader:true,
+		idField:"paymentId",
+		columns : [[
+		            {field:'hello', checkbox:true},
+		            {field:"paymentId", title:"paymentId", width:30},
+		            {field:"paymentName", title:"paymentName", width:30},
+		            {field:"paymentMoney", title:"paymentMoney", width:30}
+		]],
+		loadFilter : function(data){
+			var d = {total:0, rows:[]};
+			d.total = data.total;
+			d.rows = data.paymentList;
+			return d;
+		},
+		toolbar:[{
+			iconCls:"icon-add",
+			text : "添加",
+			handler:function(){
+				addPayment();
+			}
+		},{
+			iconCls:"icon-edit",
+			text : "编辑",
+			handler:function(){
+				editPayment();
+			}
+		},{
+			iconCls:"icon-remove",
+			text : "删除",
+			handler:function(){
+				deletePayment();
+			}
+		}]
+	});
+})
+
+/**
+ * 设置查询条件
+ */
+function setPaymentCondtion(){
+	$("#paymentList").datagrid("reload",{
+		
+	});
+}
+
+/**
+ * 重置条件
+ */
+function resetPaymentCondition(){
+	$("#paymentconditionForm").form("clear");
+}
+
+function editPayment(){
+	//获取选中的行，只要第一次
+	var selRow = $("#paymentList").datagrid("getSelected");
+	if(selRow == null){
+		$.messager.alert("提示","必须选择要编辑的数据","warning");
+		return;
+	}
+	//去掉其他的选中行
+	$("#paymentList").datagrid("clearSelections");
+	// 调用这个方法必须配置idField属性
+	$("#paymentList").datagrid("selectRecord",selRow.id);
+	
+	
+	
+	var d = $("<div></div>").appendTo("body");
+	d.dialog({
+		title : "编辑Payment",
+		iconCls : "icon-edit",
+		width:700,
+		height:400,
+		modal : true,
+		href : "sys/payment/payment.jsp",
+		onLoad:function(){
+			//发送一个异步请求，加载数据
+			$.post("sys/payment_toedit.action",{"payment.id":selRow.id},function(data){
+				//转换数据
+				var d = {};
+				//foreach语法：
+				// object：ｋｅｙ代表的是属性
+				// array: 代表循环变量
+				// string : 代表一个一个的字符
+				for(var key in data){
+					d["payment."+key] = data[key];
+					//如果属性是object类型
+					if(typeof data[key] == "object"){
+						for(var e in data[key]){
+							d["payment."+key+"."+e] = data[key][e];
+						}
+					}
+				}
+				//让表单显示数据
+				$("#paymentForm").form("load",d);
+			});
+		},
+		onClose:function(){$(this).dialog("destroy");},
+		buttons:[{
+			text : "确定",
+			iconCls:"icon-ok",
+			handler:function(){
+				$("#paymentForm").form("submit",{
+					url : "sys/payment_edit.action",
+					success:function(data){
+						if(typeof data == "string"){
+							data = eval("("+data+")");
+						}
+						if(data.result == true){
+							d.dialog("close");
+							$("#paymentList").datagrid("reload");
+						}
+					}
+				});
+			}
+		},{
+			text : "取消",
+			iconCls:"icon-cancel",
+			handler:function(){
+				d.dialog("close");
+			}
+		}]
+	});
+}
+
+/**
+ * 添加  
+ */
+function addPayment(){
+	var d = $("<div></div>").appendTo("body");
+	d.dialog({
+		title : "添加Payment",
+		iconCls : "icon-add",
+		width:700,
+		height:400,
+		modal : true,
+		href : "sys/payment/payment.jsp",
+		onClose:function(){$(this).dialog("destroy");},
+		buttons:[{
+			text : "确定",
+			iconCls:"icon-ok",
+			handler:function(){
+				$("#paymentForm").form("submit",{
+					url : "sys/payment_add.action",
+					success:function(data){
+						if(typeof data == "string"){
+							data = eval("("+data+")");
+						}
+						if(data.result == true){
+							d.dialog("close");
+							$("#paymentList").datagrid("reload");
+						}
+					}
+				});
+			}
+		},{
+			text : "取消",
+			iconCls:"icon-cancel",
+			handler:function(){
+				d.dialog("close");
+			}
+		}]
+	});
+}
+
+/**
+ * 删除记录
+ */
+function deletePayment(){
+	//获取选中的记录
+	var selRows = $("#paymentList").datagrid("getSelections");
+	//如果没有选中，提示
+	if(selRows.length == 0){
+		$.messager.alert("提示","必须选择要删除的行","warning");
+		return;
+	}
+	$.messager.confirm("提示","你确定要删除这些记录吗?",function(r){
+		if(r){
+			var postData = {};
+			$.each(selRows,function(i){
+				postData["ids["+i+"]"] = this.id;
+			});
+			//发送异步请求去删除数据
+			$.post("sys/payment_delete.action",postData,function(data){
+				//成功了就刷新datagrid
+				if(data.result == true){
+					$("#paymentList").datagrid("reload");
+				}
+			});
+		}
+	});
+	
+}
+
+
+
+
+
+
+

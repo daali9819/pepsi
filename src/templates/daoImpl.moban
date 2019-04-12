@@ -1,0 +1,62 @@
+package org.${projectName}.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.${projectName}.dao.${entityName}Dao;
+import org.${projectName}.entity.Role;
+import org.${projectName}.entity.${entityName};
+import org.${projectName}.utils.BaseHibernateDao;
+
+public class ${entityName}DaoImpl extends BaseHibernateDao<${entityName}> implements ${entityName}Dao {
+	@Override
+	public List<${entityName}> getAll${entityName}s(){
+		return super.getAll();
+	}
+	
+	@Override
+	public void add${entityName}(${entityName} ${short_entityName}) {
+		super.save(${short_entityName});
+	}
+
+	@Override
+	public void update${entityName}(${entityName} ${short_entityName}) {
+		super.update(${short_entityName});
+	}
+
+	@Override
+	public ${entityName} get${entityName}ById(Integer id) {
+		return super.get(id);
+	}
+
+	@Override
+	public void delete${entityName}ById(Integer id) {
+		super.delete(id);
+	}
+	
+	@Override
+	public void setCondition(Criteria criteria, ${entityName} condition) {
+		if(condition != null) {
+			
+		}
+	}
+
+	@Override
+	public List<${entityName}> get${entityName}s(int pageNo, int pageSize, ${entityName} condition,
+			String propertyName, String orderBy) {
+		return super.getPageList(pageNo, pageSize, condition, propertyName, orderBy);
+	}
+
+	@Override
+	public Integer getCountOf${entityName}(${entityName} condition) {
+		return super.getCount(condition);
+	}
+
+}
+
+
+
+

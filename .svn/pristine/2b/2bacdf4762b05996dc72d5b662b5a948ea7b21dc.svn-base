@@ -1,0 +1,144 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	font-size: 14px;
+	font-family: "微软雅黑";
+	height: 100%;
+}
+
+
+
+/*表单相关样式*/
+.form-item{
+	line-height: 35px;
+	min-height: 35px;
+	
+}
+.form-item .iblock{
+	display: inline-block;
+	width: 60px;
+	text-align: left;
+	padding-right: 5px;
+	font-weight: bold;
+}
+.form-item .ipt{
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	border:1px solid #ccc;
+}
+.form-item .btn{
+	width:100px;
+	height: 30px;
+}
+
+.condition{
+	margin-bottom: 15px;
+	padding:5px;
+}
+
+/*头部央视*/
+.header{
+	position: relative;
+	background-color: #95B8E7;
+	overflow: hidden;
+	height:80px;
+}
+.header h1{
+	color:black;
+	font-family: "微软雅黑";
+	font-weight:normal;
+  	height: 60px;
+  	line-height: 60px;
+  	font-size: 25px;
+	font-size: 30px;
+	padding-left:20px;
+	margin-top:10px;
+}
+.header #themes{
+	height: 25px;
+	width:350px;
+	position: absolute;
+	right : 0px;
+	bottom : 0px;
+	color:white;
+	text-align: right;
+  padding-right: 15px;
+}
+.header #themes span{
+	width: 15px;
+	height : 15px;
+	display: inline-block;
+	border : 1px solid #ccc;
+	border-radius:8px;
+}
+.header #themes a{
+	color: white;
+	text-decoration: none;
+}
+.header #themes a:hover{
+	color: orange;
+	text-decoration: none;
+}
+.header #themes span.active{
+	border:1px solid #f60;
+}
+.header #themes span.theme1{
+	background-color: gray;
+}
+.header #themes span.theme2{
+	background-color: black;
+}
+.header #themes span.theme3{
+	background-color: blue;
+}
+.header #themes span.theme4{
+	background-color: yellow;
+}
+.header #themes span.theme5{
+	background-color: #99CCFF;
+}
+
+/*覆盖easyui的默认tree样式*/
+.tree-node{
+	height:25px;
+}
+.tree-title{
+	height: 25px;
+	line-height: 25px;
+}
+.tree-file{
+	margin-top: 3px;
+}
+#themes p{
+	color:black;
+	font-family: "微软雅黑";
+	position:absolute;
+	top:-45px;
+	left:-20px;
+}
+#themes label{
+	margin-left:-20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

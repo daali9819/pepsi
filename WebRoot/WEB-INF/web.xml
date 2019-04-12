@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>hr_xiangmu</display-name>
+  
+  
+<error-page>
+	<error-code>404</error-code>
+	<location>/sys/error404.jsp</location>
+</error-page>
+  
+    <filter>
+    <filter-name>guo</filter-name>
+    <filter-class>org.hr_xiangmu.utils.guoFiler</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>guo</filter-name>
+    <url-pattern>/sys/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>opensession</filter-name>
+    <filter-class>org.hr_xiangmu.utils.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>opensession</filter-name>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  
+  
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>

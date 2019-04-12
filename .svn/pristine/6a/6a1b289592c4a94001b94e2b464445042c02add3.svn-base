@@ -1,0 +1,98 @@
+package org.hr_xiangmu.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * Role entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "role", catalog = "hr_project")
+public class Role implements java.io.Serializable {
+
+	// Fields
+
+	private Integer roleId;
+	private String roleName;
+	private String role_miaoshu;
+	
+	
+	
+	public String getRole_miaoshu() {
+		return role_miaoshu;
+	}
+	@Column(name = "role_miaoshu", nullable = true, length = 50)
+	public void setRole_miaoshu(String role_miaoshu) {
+		this.role_miaoshu = role_miaoshu;
+	}
+
+	private Set<Rolesysright> rolesysrights = new HashSet<Rolesysright>(0);
+	private Set<User> users = new HashSet<User>(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Role() {
+	}
+
+	/** minimal constructor */
+	public Role(String roleName) {
+		this.roleName = roleName;
+	}
+
+	/** full constructor */
+	public Role(String roleName, Set<Rolesysright> rolesysrights,
+			Set<User> users) {
+		this.roleName = roleName;
+		this.rolesysrights = rolesysrights;
+		this.users = users;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue
+	@Column(name = "role_id", unique = true, nullable = false)
+	public Integer getRoleId() {
+		return this.roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	@Column(name = "role_name", nullable = false, length = 50)
+	public String getRoleName() {
+		return this.roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
+	public Set<Rolesysright> getRolesysrights() {
+		return this.rolesysrights;
+	}
+
+	public void setRolesysrights(Set<Rolesysright> rolesysrights) {
+		this.rolesysrights = rolesysrights;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
+	public Set<User> getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+}

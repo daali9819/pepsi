@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="data" namespace="/sys" extends="json-default">
+		<action name="data_emp_*" class="org.hr_xiangmu.web.EmpAction" method="{1}">
+			<result name="search" type="json">
+				<param name="root">empList</param>
+			</result>
+			
+			<result name="success" type="json">
+				<param name="includeProperties">
+					total,
+					empList\[\d+\]\.\w+,
+					empList\[\d+\]\.orgenization.text,
+					empList\[\d+\]\.position.positionName,
+					empList\[\d+\]\.title.titleName
+				</param>
+			</result>
+			
+			<result name="biaoshi" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+			
+			<result name="edit" type="json">
+				<param name="root">emp</param>
+			</result>
+			
+			<result name="searchDateOfYear" type="json">
+				<param name="root">years</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

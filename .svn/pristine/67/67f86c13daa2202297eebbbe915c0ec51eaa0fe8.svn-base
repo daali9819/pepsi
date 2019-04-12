@@ -1,0 +1,60 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'user.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<%@include file="../common.jsp" %>
+	
+  </head>
+  
+  <body>
+    	<script type="text/javascript" src="sys/train/train.js"></script>
+  		<div class="easyui-panel  condition" title="培训管理>>培训计划">
+  			<form id="trainconditionForm">
+  				<div class="form-item">
+  					<label class="iblock">培训名称:</label>
+  					<input type="text"  id="trainName" class="ipt"/>
+  					<label class="iblock">审核状态:</label>
+					<input id="train" class="easyui-combobox" 
+					    data-options="valueField:'propertiesItemsName',textField:'propertiesItemsName',url:'sys/propertiesitems_search.action?PId=2',panelHeight:'auto',editable:false" /> 
+					<label class="iblock">培训时间:</label>
+  					<input type="text"  id="train_beginDate" class="easyui-datebox"/>
+  					<label>至</label>
+  					<input type="text"  id="train_endDate" class="easyui-datebox"/>
+  					
+  					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'"  onclick="setTrainCondtion();return false;">查询</a> 
+  					
+  				</div>
+  				
+  			</form>
+  			
+  		</div>
+    		<table id="trainList"></table>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+package org.hr_xiangmu.dao;
+
+import java.util.List;
+
+import org.hr_xiangmu.entity.Payment;
+
+public interface PaymentDao {
+	public List<Payment> getAllPayments();
+	
+	public void addPayment(Payment payment);
+	
+	public void updatePayment(Payment payment);
+	
+	public Payment getPaymentById(Integer id);
+	
+	public void deletePaymentById(Integer id);
+	
+	public List<Payment> getPayments(int pageNo, int pageSize, Payment condition, String propertyName, String orderBy);
+	
+	public Integer getCountOfPayment(Payment condtion);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+package org.${projectName}.dao;
+
+import java.util.List;
+
+import org.${projectName}.entity.${entityName};
+
+public interface ${entityName}Dao {
+	public List<${entityName}> getAll${entityName}s();
+	
+	public void add${entityName}(${entityName} ${short_entityName});
+	
+	public void update${entityName}(${entityName} ${short_entityName});
+	
+	public ${entityName} get${entityName}ById(Integer id);
+	
+	public void delete${entityName}ById(Integer id);
+	
+	public List<${entityName}> get${entityName}s(int pageNo, int pageSize, ${entityName} condition, String propertyName, String orderBy);
+	
+	public Integer getCountOf${entityName}(${entityName} condtion);
+}
+
+
+
+
+
+
+
+
+
+
+

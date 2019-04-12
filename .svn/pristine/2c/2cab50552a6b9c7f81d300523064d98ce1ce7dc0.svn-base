@@ -1,0 +1,19 @@
+package org.hr_xiangmu.test;
+
+import java.util.Date;
+import java.util.List;
+
+import org.hr_xiangmu.dao.EmpDao;
+import org.hr_xiangmu.dao.impl.EmpDaoImpl;
+
+public class Test {
+	public static void main(String[] args) {
+//		EmpDao empDao = new EmpDaoImpl();
+//		List<Date> list = empDao.getEmpfilingDates();
+//		for (int i = 0; i < list.size(); i++) {
+//			System.out.println(list.get(i));
+//		}
+		
+		//String hqlString = "select o.name,count(e)  from Organization o left join o.emps e where o.parent.id=1";
+	}
+}

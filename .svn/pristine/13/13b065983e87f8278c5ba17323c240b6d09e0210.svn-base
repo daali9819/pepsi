@@ -1,0 +1,62 @@
+package org.hr_xiangmu.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hr_xiangmu.dao.PaymentitemsDao;
+import org.hr_xiangmu.entity.Role;
+import org.hr_xiangmu.entity.Paymentitems;
+import org.hr_xiangmu.utils.BaseHibernateDao;
+
+public class PaymentitemsDaoImpl extends BaseHibernateDao<Paymentitems> implements PaymentitemsDao {
+	@Override
+	public List<Paymentitems> getAllPaymentitemss(){
+		return super.getAll();
+	}
+	
+	@Override
+	public void addPaymentitems(Paymentitems paymentitems) {
+		super.save(paymentitems);
+	}
+
+	@Override
+	public void updatePaymentitems(Paymentitems paymentitems) {
+		super.update(paymentitems);
+	}
+
+	@Override
+	public Paymentitems getPaymentitemsById(Integer id) {
+		return super.get(id);
+	}
+
+	@Override
+	public void deletePaymentitemsById(Integer id) {
+		super.delete(id);
+	}
+	
+	@Override
+	public void setCondition(Criteria criteria, Paymentitems condition) {
+		if(condition != null) {
+			
+		}
+	}
+
+	@Override
+	public List<Paymentitems> getPaymentitemss(int pageNo, int pageSize, Paymentitems condition,
+			String propertyName, String orderBy) {
+		return super.getPageList(pageNo, pageSize, condition, propertyName, orderBy);
+	}
+
+	@Override
+	public Integer getCountOfPaymentitems(Paymentitems condition) {
+		return super.getCount(condition);
+	}
+
+}
+
+
+
+

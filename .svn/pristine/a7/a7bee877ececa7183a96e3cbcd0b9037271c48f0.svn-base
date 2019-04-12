@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="orgenization" namespace="/sys" extends="json-default">
+		<action name="orgenization_*" class="org.hr_xiangmu.web.OrgenizationAction" method="{1}">
+			<result name="search" type="json">
+				<param name="root">orgenizationList</param>
+				<param name="includeProperties">
+					\[\d+\]\.\w+
+				</param>
+			</result>
+			<result name="success" type="json">
+				<param name="includeProperties">
+					total,
+					orgenizationList\[\d+\]\.\w+,
+					orgenizationList\[\d+\]\.children\[\d+\]\.\w+,
+					orgenizationList\[\d+\]\.children\[\d+\]\.children\[\d+\]\.\w+,
+				</param>
+			</result>
+			<result name="biaoshi" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+			<result name="edit" type="json">
+				<param name="root">orgenization</param>
+			</result>
+			<result name="getfu" type="json">
+				<param name="root">orgenizationList</param>
+				<param name="includeProperties">
+					\[\d+\]\.orgenizationId,
+					\[\d+\]\.text
+				</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

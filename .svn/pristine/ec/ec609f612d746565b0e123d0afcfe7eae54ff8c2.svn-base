@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+#updmima{
+	width:500px;
+	margin:50px auto;
+}
+#updmima .redxing{
+	color:red;
+	margin-left: 10px;
+}
+#updmima .bluezi{
+	color:blue;
+	font-size: 13px;
+}
+#updmima button{
+	margin-left: 30px;
+}

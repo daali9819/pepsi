@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="title" namespace="/sys" extends="json-default">
+		<action name="title_*" class="org.hr_xiangmu.web.TitleAction" method="{1}">
+			<result name="search" type="json">
+				<param name="root">titleList</param>
+			</result>
+			<result name="success" type="json">
+				<param name="includeProperties">
+					total,
+					titleList\[\d+\]\.\w+,
+					titleList\[\d+\]\.orgenization.text,
+					titleList\[\d+\]\.position.positionName
+				</param>
+			</result>
+			<result name="biaoshi" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+			<result name="edit" type="json">
+				<param name="root">title</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

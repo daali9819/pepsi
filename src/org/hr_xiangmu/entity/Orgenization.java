@@ -1,0 +1,122 @@
+package org.hr_xiangmu.entity;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * Orgenization entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "orgenization", catalog = "hr_project")
+public class Orgenization implements java.io.Serializable {
+
+	// Fields
+
+	private Integer orgenizationId;
+	private Orgenization parent;
+	private String orgenizationSimpleName;
+	private String text;
+	private String orgenizationAddress;
+	private String orgenizationDesc;
+	private String orgenizationRemark;
+	private Boolean organizationIstrue;
+	private List<Orgenization> children = new ArrayList<Orgenization>();
+
+	@Id
+	@GeneratedValue
+	@Column(name = "orgenization_id", unique = true, nullable = false)
+	public Integer getOrgenizationId() {
+		return this.orgenizationId;
+	}
+
+	public void setOrgenizationId(Integer orgenizationId) {
+		this.orgenizationId = orgenizationId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id", nullable = false)
+	public Orgenization getParent() {
+		return this.parent;
+	}
+
+	public void setParent(Orgenization parent) {
+		this.parent = parent;
+	}
+
+	@Column(name = "orgenization_simpleName", nullable = false, length = 50)
+	public String getOrgenizationSimpleName() {
+		return this.orgenizationSimpleName;
+	}
+
+	public void setOrgenizationSimpleName(String orgenizationSimpleName) {
+		this.orgenizationSimpleName = orgenizationSimpleName;
+	}
+
+	@Column(name = "orgenization_allName", nullable = false, length = 50)
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Column(name = "orgenization_address", nullable = false, length = 50)
+	public String getOrgenizationAddress() {
+		return this.orgenizationAddress;
+	}
+
+	public void setOrgenizationAddress(String orgenizationAddress) {
+		this.orgenizationAddress = orgenizationAddress;
+	}
+
+	@Column(name = "orgenization_desc", nullable = false, length = 50)
+	public String getOrgenizationDesc() {
+		return this.orgenizationDesc;
+	}
+
+	public void setOrgenizationDesc(String orgenizationDesc) {
+		this.orgenizationDesc = orgenizationDesc;
+	}
+
+	@Column(name = "orgenization_remark", nullable = false, length = 50)
+	public String getOrgenizationRemark() {
+		return this.orgenizationRemark;
+	}
+
+	public void setOrgenizationRemark(String orgenizationRemark) {
+		this.orgenizationRemark = orgenizationRemark;
+	}
+
+	@Column(name = "organization_istrue")
+	public Boolean getOrganizationIstrue() {
+		return this.organizationIstrue;
+	}
+
+	public void setOrganizationIstrue(Boolean organizationIstrue) {
+		this.organizationIstrue = organizationIstrue;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+	public List<Orgenization> getChildren() {
+		return this.children;
+	}
+
+	public void setChildren(List<Orgenization> children) {
+		this.children = children;
+	}
+
+}

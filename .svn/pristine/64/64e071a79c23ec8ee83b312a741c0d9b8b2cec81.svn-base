@@ -1,0 +1,9 @@
+package org.hr_xiangmu.test;
+
+import org.hr_xiangmu.utils.HibernateSessionFactory;
+
+public class Test {
+	public static void main(String[] args) {
+		HibernateSessionFactory.getSession();
+	}
+}

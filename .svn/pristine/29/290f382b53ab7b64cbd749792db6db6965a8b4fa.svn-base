@@ -1,0 +1,114 @@
+package org.hr_xiangmu.entity;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ * Paymentitems entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "paymentitems", catalog = "hr_project")
+public class Paymentitems implements java.io.Serializable {
+
+	// Fields
+
+	private Integer paymentItemsId;
+	private String paymentItemsName;
+	private String paymentItemsState;
+	private Date paymentItemsTime;
+	private Integer paymentItemsMoney;
+	private String paymentItemsPerson;
+	// Constructors
+
+
+	/** default constructor */
+	public Paymentitems() {
+	}
+
+	/** minimal constructor */
+	public Paymentitems(String paymentItemsName, String paymentItemsState,
+			Date paymentItemsTime, Integer paymentItemsMoney,
+			String paymentItemsPerson) {
+		this.paymentItemsName = paymentItemsName;
+		this.paymentItemsState = paymentItemsState;
+		this.paymentItemsTime = paymentItemsTime;
+		this.paymentItemsMoney = paymentItemsMoney;
+		this.paymentItemsPerson = paymentItemsPerson;
+	}
+
+
+
+	// Property accessors
+	@Id
+	@GeneratedValue
+	@Column(name = "paymentItems_id", unique = true, nullable = false)
+	public Integer getPaymentItemsId() {
+		return this.paymentItemsId;
+	}
+
+	public void setPaymentItemsId(Integer paymentItemsId) {
+		this.paymentItemsId = paymentItemsId;
+	}
+
+	@Column(name = "paymentItems_name", nullable = false, length = 50)
+	public String getPaymentItemsName() {
+		return this.paymentItemsName;
+	}
+
+	public void setPaymentItemsName(String paymentItemsName) {
+		this.paymentItemsName = paymentItemsName;
+	}
+
+	@Column(name = "paymentItems_state", nullable = false, length = 50)
+	public String getPaymentItemsState() {
+		return this.paymentItemsState;
+	}
+
+	public void setPaymentItemsState(String paymentItemsState) {
+		this.paymentItemsState = paymentItemsState;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "paymentItems_time", nullable = false, length = 0)
+	public Date getPaymentItemsTime() {
+		return this.paymentItemsTime;
+	}
+
+	public void setPaymentItemsTime(Date paymentItemsTime) {
+		this.paymentItemsTime = paymentItemsTime;
+	}
+
+	@Column(name = "paymentItems _money", nullable = false)
+
+
+	public Integer getPaymentItemsMoney() {
+		return this.paymentItemsMoney;
+	}
+
+	public void setPaymentItemsMoney(Integer paymentItemsMoney) {
+		this.paymentItemsMoney = paymentItemsMoney;
+	}
+
+	@Column(name = "paymentItems_person", nullable = false, length = 50)
+	public String getPaymentItemsPerson() {
+		return this.paymentItemsPerson;
+	}
+
+	public void setPaymentItemsPerson(String paymentItemsPerson) {
+		this.paymentItemsPerson = paymentItemsPerson;
+	}
+
+	
+}

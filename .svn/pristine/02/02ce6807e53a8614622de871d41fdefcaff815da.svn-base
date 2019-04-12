@@ -1,0 +1,63 @@
+/**
+ * 后台导航部分的js脚本
+ */
+$(function(){
+	var name = $.cookie("skinName");
+	if(name){
+		changeTheme(name);
+		$("#themes span[title='"+name+"']").addClass("active").siblings("span").removeClass("active")
+	}
+	
+	$("ul.tree").tree({
+		onClick : function(node){
+			console.log(node);
+			//给选项卡动态添加面板
+			//先判断是否已经存在打开的选项卡了
+			if($("#tt").tabs("exists",node.text)){
+				$("#tt").tabs("select",node.text);
+			}else{
+				$("#tt").tabs("add",{
+					title : node.text,
+					iconCls : node.iconCls,
+					closable : true,
+					href : node.attributes.url
+				});
+			}
+		}
+	});
+	
+	//给换肤的小按钮添加点击事件
+	$("#themes span").click(function(){
+		$(this).addClass("active").siblings("span").removeClass("active");
+		var skinName = $(this).attr("title"); //取到要更换的皮肤名称
+		
+		changeTheme(skinName);
+		//讲当前使用的皮肤名称保存到本cookie中
+		$.cookie("skinName",skinName,{expires:7, path:'/'});
+	});
+})
+
+function changeTheme(skinName){
+	
+	$("link").each(function(){
+		//easyui/themes/black/easyui.css
+		var old = $(this).attr("href");
+		var newSkin = old.replace(/themes\/.*\/easyui/,"themes/"+skinName+"/easyui");
+		$(this).attr("href",newSkin);
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

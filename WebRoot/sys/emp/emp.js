@@ -1,0 +1,234 @@
+﻿/**
+ * Emp管理的js脚本
+ */
+$(function(){
+	$("#empList").datagrid({
+		iconCls : "icon-search",
+		url : "sys/emp_list.action",
+		fitColumns:true, //列填充满表格
+		pagination : true,
+		pageList : [5,10,15,20],
+		pageSize : 5,
+		rownumbers : true, //是否显示行号
+		striped : true,
+		showHeader:true,
+		idField:"empId",
+		columns : [[
+		            {field:'hello', checkbox:true},
+		            {field:"empId", title:"档案编码", width:30},
+		            {field:"empName", title:"姓名", width:30},
+		            {field:"empSex", title:"性别", width:30},
+		            {field:"orgenization.text", title:"所属部门", width:30, formatter:function(value,row,index){
+		            	if(row.orgenization){
+		            		return row.orgenization.text;
+		            	} 
+		            }},
+		            {field:"position.positionName", title:"职位", width:30, formatter:function(value,row,index){
+		            	if(row.position){
+		            		return row.position.positionName;
+		            	} 
+		            }},
+		            {field:"title.titleName", title:"职称", width:30, formatter:function(value,row,index){
+		            	if(row.title){
+		            		return row.title.titleName;
+		            	} 
+		            }},
+		            {field:"empFilingDate", title:"建档时间", width:30},
+		            {field:"empNewstate", title:"审核状态", width:30},
+		            {field:"empState", title:"档案状态", width:30}
+		]],
+		loadFilter : function(data){
+			var d = {total:0, rows:[]};
+			d.total = data.total;
+			d.rows = data.empList;
+			return d;
+		},
+		toolbar:[{
+			width:"100px",
+			text : "档案登记",
+			handler:function(){
+				addEmp();
+			}
+		},{
+			width:"80px",
+			text : "明细",
+			handler:function(){
+				editEmp();
+			}
+		},{
+			width:"80px",
+			text : "删除",
+			handler:function(){
+				deleteEmp();
+			}
+		}]
+	});
+})
+
+/**
+ * 设置查询条件
+ */
+function setEmpCondtion(){
+	$("#empList").datagrid("reload",{
+		"condition.empId":$("#empId").val(),
+		"condition.empState" : $("#empState").combobox("getValue"),
+		"condition.empNewstate" : $("#empNewstate").combobox("getValue"),
+		"condition.starttime" :$("#starttime").datebox("getValue"),
+		"condition.endtime" :$("#endtime").datebox("getValue")
+	});
+	
+}
+
+/**
+ * 重置条件
+ */
+function resetEmpCondition(){
+	$("#empconditionForm").form("clear");
+}
+
+function editEmp(){
+	//获取选中的行，只要第一次
+	var selRow = $("#empList").datagrid("getSelected");
+	if(selRow == null){
+		$.messager.alert("提示","必须选择要编辑的数据","warning");
+		return;
+	}
+	//去掉其他的选中行
+	$("#empList").datagrid("clearSelections");
+	// 调用这个方法必须配置idField属性
+	$("#empList").datagrid("selectRecord",selRow.empId);
+	
+	
+	
+	var d = $("<div id='addedit'></div>").appendTo("body");
+	d.dialog({
+		title : "编辑Emp",
+		iconCls : "icon-edit",
+		modal : true,
+		href : "sys/emp/emp.jsp",
+		onLoad:function(){
+			//发送一个异步请求，加载数据
+			$.post("sys/emp_toedit.action",{"emp.empId":selRow.empId},function(data){
+				//转换数据
+				var d = {};
+				//foreach语法：
+				// object：ｋｅｙ代表的是属性
+				// array: 代表循环变量
+				// string : 代表一个一个的字符
+				for(var key in data){
+					d["emp."+key] = data[key];
+					//如果属性是object类型
+					if(typeof data[key] == "object"){
+						for(var e in data[key]){
+							d["emp."+key+"."+e] = data[key][e];
+						}
+					}
+				}
+				//让表单显示数据
+				$("#haha").attr("src",data.empPhoto);
+				$("#empForm").form("load",d);
+			});
+		},
+		onClose:function(){$(this).dialog("destroy");},
+		buttons:[{
+			text : "确定",
+			iconCls:"icon-ok",
+			handler:function(){
+				$("#empForm").form("submit",{
+					url : "sys/emp_edit.action",
+					success:function(data){
+						if(typeof data == "string"){
+							data = eval("("+data+")");
+						}
+						if(data.result == true){
+							d.dialog("close");
+							$("#empList").datagrid("reload");
+						}
+					}
+				});
+			}
+		},{
+			text : "取消",
+			iconCls:"icon-cancel",
+			handler:function(){
+				d.dialog("close");
+			}
+		}]
+	});
+}
+
+/**
+ * 添加  
+ */
+function addEmp(){
+	/*location.href = "sys/emp/emp.jsp";*/
+	
+	var d = $("<div id='addedit'></div>").appendTo("body");
+	d.dialog({
+		title : "添加员工",
+		iconCls : "icon-add",
+		modal : true,
+		href : "sys/emp/emp.jsp",
+		onClose:function(){$(this).dialog("destroy");},
+		buttons:[{
+			text : "确定",
+			iconCls:"icon-ok",
+			handler:function(){
+				$("#empForm").form("submit",{
+					url : "sys/emp_add.action",
+					success:function(data){
+						if(typeof data == "string"){
+							data = eval("("+data+")");
+						}
+						if(data.result == true){
+							d.dialog("close");
+							$("#empList").datagrid("reload");
+						}
+					}
+				});
+			}
+		},{
+			text : "取消",
+			iconCls:"icon-cancel",
+			handler:function(){
+				d.dialog("close");
+			}
+		}]
+	});
+}
+
+/**
+ * 删除记录
+ */
+function deleteEmp(){
+	//获取选中的记录
+	var selRows = $("#empList").datagrid("getSelections");
+	//如果没有选中，提示
+	if(selRows.length == 0){
+		$.messager.alert("提示","必须选择要删除的行","warning");
+		return;
+	}
+	$.messager.confirm("提示","你确定要删除这些记录吗?",function(r){
+		if(r){
+			var postData = {};
+			$.each(selRows,function(i){
+				postData["ids["+i+"]"] = this.empId;
+			});
+			//发送异步请求去删除数据
+			$.post("sys/emp_delete.action",postData,function(data){
+				//成功了就刷新datagrid
+				if(data.result == true){
+					$("#empList").datagrid("reload");
+				}
+			});
+		}
+	});
+	
+}
+
+
+
+
+
+
+

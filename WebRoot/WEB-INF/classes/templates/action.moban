@@ -1,0 +1,164 @@
+﻿package org.${projectName}.web;
+
+import java.util.List;
+
+import org.${projectName}.dao.${entityName}Dao;
+import org.${projectName}.dao.impl.${entityName}DaoImpl;
+import org.${projectName}.entity.${entityName};
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ${entityName}Action extends ActionSupport {
+	private ${entityName}Dao ${short_entityName}Dao = new ${entityName}DaoImpl();
+	
+	private Integer total; //总数据条数
+	
+	private List<${entityName}> ${short_entityName}List; //用户列表
+	
+	private Integer page; //当前页
+	
+	private Integer rows; //每页显示的数据条数
+	
+	private String order; //升续还是降续
+	
+	private String sort; //属性
+	
+	private ${entityName} condition; //封装查询条件
+	
+	private List<Integer> ids; //要删除的记录编号集合
+	
+	private Boolean result = false; //标示属性
+	
+	private ${entityName} ${short_entityName}; //封装用户信息
+
+	public ${entityName} get${entityName}() {
+		return ${short_entityName};
+	}
+
+	public void set${entityName}(${entityName} ${short_entityName}) {
+		this.${short_entityName} = ${short_entityName};
+	}
+
+	public Boolean getResult() {
+		return result;
+	}
+
+	public void setResult(Boolean result) {
+		this.result = result;
+	}
+
+	public List<Integer> getIds() {
+		return ids;
+	}
+
+	public void setIds(List<Integer> ids) {
+		this.ids = ids;
+	}
+
+	public ${entityName} getCondition() {
+		return condition;
+	}
+
+	public void setCondition(${entityName} condition) {
+		this.condition = condition;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getRows() {
+		return rows;
+	}
+
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
+
+	public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+
+	public List<${entityName}> get${entityName}List() {
+		return ${short_entityName}List;
+	}
+
+	public void set${entityName}List(List<${entityName}> ${short_entityName}List) {
+		this.${short_entityName}List = ${short_entityName}List;
+	}
+	
+	public String search() throws Exception {
+		${short_entityName}List = ${short_entityName}Dao.getAll${entityName}s();
+		return "search";
+	}
+	
+	public String list() throws Exception {
+		${short_entityName}List = ${short_entityName}Dao.get${entityName}s(page, rows, condition, sort, order);
+		total = ${short_entityName}Dao.getCountOf${entityName}(condition);
+		return SUCCESS;
+	}
+	
+	public String delete() throws Exception {
+		if(ids != null) {
+			for (Integer id : ids) {
+				${short_entityName}Dao.delete${entityName}ById(id);
+			}
+		}
+		result = true;
+		return "biaoshi";
+	}
+	
+	public String add() throws Exception {
+		${short_entityName}Dao.add${entityName}(${short_entityName});
+		result = true;
+		return "biaoshi";
+	}
+	
+	public String toedit() throws Exception {
+		${short_entityName} = ${short_entityName}Dao.get${entityName}ById(${short_entityName}.getId());
+		return "edit";
+	}
+	
+	public String edit() throws Exception {
+		${short_entityName}Dao.update${entityName}(${short_entityName});
+		result = true;
+		return "biaoshi";
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

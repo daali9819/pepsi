@@ -1,0 +1,32 @@
+package org.hr_xiangmu.dao;
+
+import java.util.List;
+
+import org.hr_xiangmu.entity.Paymentitems;
+
+public interface PaymentitemsDao {
+	public List<Paymentitems> getAllPaymentitemss();
+	
+	public void addPaymentitems(Paymentitems paymentitems);
+	
+	public void updatePaymentitems(Paymentitems paymentitems);
+	
+	public Paymentitems getPaymentitemsById(Integer id);
+	
+	public void deletePaymentitemsById(Integer id);
+	
+	public List<Paymentitems> getPaymentitemss(int pageNo, int pageSize, Paymentitems condition, String propertyName, String orderBy);
+	
+	public Integer getCountOfPaymentitems(Paymentitems condtion);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+/**
+ * 鍚庡彴瀵艰埅閮ㄥ垎鐨刯s鑴氭湰
+ */
+$(function(){
+	
+	
+	
+	var name = $.cookie("skinName");
+	if(name){
+		changeTheme(name);
+		$("#themes span[title='"+name+"']").addClass("active").siblings("span").removeClass("active")
+	}
+	
+	$("ul.tree").tree({
+		onClick : function(node){
+			console.log(node);
+			//缁欓�椤瑰崱鍔ㄦ�娣诲姞闈㈡澘
+			//鍏堝垽鏂槸鍚﹀凡缁忓瓨鍦ㄦ墦寮�殑閫夐」鍗′簡
+			if($("#tt").tabs("exists",node.text)){
+				$("#tt").tabs("select",node.text);
+			}else{
+				$("#tt").tabs("add",{
+					title : node.text,
+					iconCls : node.iconCls,
+					closable : true,
+					href : node.attributes.url
+				});
+			}
+		}
+	});
+	
+	//缁欐崲鑲ょ殑灏忔寜閽坊鍔犵偣鍑讳簨浠�
+	$("#themes span").click(function(){
+		$(this).addClass("active").siblings("span").removeClass("active");
+		var skinName = $(this).attr("title"); //鍙栧埌瑕佹洿鎹㈢殑鐨偆鍚嶇О
+		
+		changeTheme(skinName);
+		//璁插綋鍓嶄娇鐢ㄧ殑鐨偆鍚嶇О淇濆瓨鍒版湰cookie涓�
+		$.cookie("skinName",skinName,{expires:7, path:'/'});
+	});
+})
+
+function changeTheme(skinName){
+	
+	$("link").each(function(){
+		//easyui/themes/black/easyui.css
+		var old = $(this).attr("href");
+		var newSkin = old.replace(/themes\/.*\/easyui/,"themes/"+skinName+"/easyui");
+		$(this).attr("href",newSkin);
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

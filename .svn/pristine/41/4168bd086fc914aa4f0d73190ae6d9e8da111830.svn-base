@@ -1,0 +1,62 @@
+package org.hr_xiangmu.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hr_xiangmu.dao.PaymentDao;
+import org.hr_xiangmu.entity.Role;
+import org.hr_xiangmu.entity.Payment;
+import org.hr_xiangmu.utils.BaseHibernateDao;
+
+public class PaymentDaoImpl extends BaseHibernateDao<Payment> implements PaymentDao {
+	@Override
+	public List<Payment> getAllPayments(){
+		return super.getAll();
+	}
+	
+	@Override
+	public void addPayment(Payment payment) {
+		super.save(payment);
+	}
+
+	@Override
+	public void updatePayment(Payment payment) {
+		super.update(payment);
+	}
+
+	@Override
+	public Payment getPaymentById(Integer id) {
+		return super.get(id);
+	}
+
+	@Override
+	public void deletePaymentById(Integer id) {
+		super.delete(id);
+	}
+	
+	@Override
+	public void setCondition(Criteria criteria, Payment condition) {
+		if(condition != null) {
+			
+		}
+	}
+
+	@Override
+	public List<Payment> getPayments(int pageNo, int pageSize, Payment condition,
+			String propertyName, String orderBy) {
+		return super.getPageList(pageNo, pageSize, condition, propertyName, orderBy);
+	}
+
+	@Override
+	public Integer getCountOfPayment(Payment condition) {
+		return super.getCount(condition);
+	}
+
+}
+
+
+
+

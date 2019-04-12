@@ -1,0 +1,167 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'user.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  </head>
+  
+  <body>
+    <form id="empForm" method="post" style="position: relative;">
+    	<input type="hidden" name="emp.id"/>
+    	<div class="form-item">
+    		<label class="iblock">empId:</label>
+    		<input type="text" name="emp.empId" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">title:</label>
+    		<input type="text" name="emp.title" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">position:</label>
+    		<input type="text" name="emp.position" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">orgenization:</label>
+    		<input type="text" name="emp.orgenization" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">paymentitems:</label>
+    		<input type="text" name="emp.paymentitems" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empName:</label>
+    		<input type="text" name="emp.empName" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empSex:</label>
+    		<input type="text" name="emp.empSex" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empEmail:</label>
+    		<input type="text" name="emp.empEmail" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empAddress:</label>
+    		<input type="text" name="emp.empAddress" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empPhone:</label>
+    		<input type="text" name="emp.empPhone" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empIdentity:</label>
+    		<input type="text" name="emp.empIdentity" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empSchool:</label>
+    		<input type="text" name="emp.empSchool" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empCard:</label>
+    		<input type="text" name="emp.empCard" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empState:</label>
+    		<input type="text" name="emp.empState" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empCareer:</label>
+    		<input type="text" name="emp.empCareer" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empLocalhost:</label>
+    		<input type="text" name="emp.empLocalhost" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empStatus:</label>
+    		<input type="text" name="emp.empStatus" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empBank:</label>
+    		<input type="text" name="emp.empBank" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empXueli:</label>
+    		<input type="text" name="emp.empXueli" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empBankcard:</label>
+    		<input type="text" name="emp.empBankcard" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empFilingDate:</label>
+    		<input type="text" name="emp.empFilingDate" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empPhoto:</label>
+    		<input type="text" name="emp.empPhoto" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empRecord:</label>
+    		<input type="text" name="emp.empRecord" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empInfo:</label>
+    		<input type="text" name="emp.empInfo" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empRemark:</label>
+    		<input type="text" name="emp.empRemark" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empAccessory:</label>
+    		<input type="text" name="emp.empAccessory" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empChange:</label>
+    		<input type="text" name="emp.empChange" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empNewstate:</label>
+    		<input type="text" name="emp.empNewstate" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empUpdatedate:</label>
+    		<input type="text" name="emp.empUpdatedate" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">empIsdelete:</label>
+    		<input type="text" name="emp.empIsdelete" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    	<div class="form-item">
+    		<label class="iblock">paymentItemsId:</label>
+    		<input type="text" name="emp.paymentItemsId" class="ipt easyui-validatebox" data-options="required:true"/>
+    	</div>
+    </form>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="backlog" namespace="/sys" extends="json-default">
+		<action name="backlog_*" class="org.hr_xiangmu.web.BacklogAction" method="{1}">
+			<result name="search" type="json">
+				<param name="root">backlogList</param>
+			</result>
+			<result name="success" type="json">
+				<param name="includeProperties">
+					total,
+					backlogList\[\d+\]\.\w+
+				</param>
+			</result>
+			<result name="biaoshi" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+			<result name="edit" type="json">
+				<param name="root">backlog</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

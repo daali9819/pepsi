@@ -1,0 +1,64 @@
+package org.hr_xiangmu.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * Payment entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "payment", catalog = "hr_project")
+public class Payment implements java.io.Serializable {
+
+	// Fields
+
+	private Integer paymentId;
+	private String paymentName;
+	private Integer paymentMoney;
+
+	// Constructors
+
+	/** default constructor */
+	public Payment() {
+	}
+
+	/** full constructor */
+	public Payment(String paymentName, Integer paymentMoney) {
+		this.paymentName = paymentName;
+		this.paymentMoney = paymentMoney;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue
+	@Column(name = "payment_id", unique = true, nullable = false)
+	public Integer getPaymentId() {
+		return this.paymentId;
+	}
+
+	public void setPaymentId(Integer paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	@Column(name = "payment_name", nullable = false, length = 50)
+	public String getPaymentName() {
+		return this.paymentName;
+	}
+
+	public void setPaymentName(String paymentName) {
+		this.paymentName = paymentName;
+	}
+
+	@Column(name = "payment_money", nullable = false)
+	public Integer getPaymentMoney() {
+		return this.paymentMoney;
+	}
+
+	public void setPaymentMoney(Integer paymentMoney) {
+		this.paymentMoney = paymentMoney;
+	}
+
+}

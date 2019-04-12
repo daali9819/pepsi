@@ -1,0 +1,66 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'empdata.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<%@include file="../common.jsp" %>
+	
+  </head>
+  
+  <body>
+	<script type="text/javascript" src="sys/data/empdata.js"></script>
+	<div class="easyui-panel" title="查询条件" style="width:100%;">
+		<form id="dataempconditionForm">
+			<div class="form-item">
+				<label class="iblock">年度</label>
+				<input id="" class="easyui-combobox"
+	data-options="valueField:'',textField:'',url:'sys/data_emp_searchDateOfYear.action',panelHeight:'auto',editable:false" />
+    <a style="margin-left:20px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'"  onclick="setEmpCondtion();return false;">查询</a> 
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'"  onclick="resetEmpCondition();return false;">重置</a>
+			</div>
+		</form>
+	</div>
+	
+	
+	<div id="empdata">
+		<table>
+			<tr>
+				<td></td>
+				<td>全部</td>
+				<td>博士</td>
+				<td>硕士</td>
+				<td>本科</td>
+				<td>专科</td>
+			</tr>
+		</table>
+	</div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

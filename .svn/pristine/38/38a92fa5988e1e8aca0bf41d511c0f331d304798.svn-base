@@ -1,0 +1,36 @@
+#empForm .iblock{
+	width:100px;
+	line-height:35px;
+}
+
+.two{
+	position: relative;
+	left: 350px;	
+	top:-316px;
+}
+.three{
+	position: relative;
+	left: 350px;	
+	top:-281px;
+}
+#empForm .fore .easyui-validatebox{
+width:120px;	
+}
+.fore{
+	position: relative;
+	left: 680px;	
+	top:-612px;
+}
+#empForm .five{
+	line-height:75px;	
+}
+.five{
+	position:relative;
+	top:-610px;	
+}
+
+#addedit{
+	overflow:hidden;
+	width: 950px;
+	height: 620px;
+}
